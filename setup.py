@@ -6,7 +6,13 @@ from setuptools import setup, find_packages
 scripts = [str(p) for p in Path("bin").iterdir() if p.name != "i-pi-driver"]
 
 setup(
-    packages=[*find_packages(exclude=["ipi_tests*"])],
+    packages=[
+        *find_packages(exclude=["ipi_tests*"]),
+        "ipi._driver"
+    ],
+    package_dir={
+        "ipi._driver": "drivers/py"
+    },
     package_data={
         "ipi.utils": ["lebedev_grids.npy"],  # Include the npy file here
     },
